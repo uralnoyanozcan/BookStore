@@ -1,0 +1,84 @@
+﻿@model BookStore.Models.Adviewmodel
+@{
+    ViewBag.Title = "ViewAd";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<style>
+    td {
+        padding: 25px;
+    }
+
+    #box {
+        border: 1px solid black;
+        height: 100%;
+    }
+    table 
+    {
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <img src="" class="img-responsive" style="width:100%" />
+        </div>
+    </div>
+
+    
+        <div class="row">
+            @*<div class="col-lg-2 col-md-2">
+                <img src="" class="img-responsive" style="height:500px;" />
+            </div>*@
+
+
+            <div class="col-lg 6">
+                <table border="1px solid black">
+                    <tr><th>@Model.pro_name</th></tr>
+                    <tr>
+                        <td>
+                            <img src="@Url.Content(@Model.pro_image)" style="min-height: 200px; vertical-align: middle; margin: 0 auto;" />
+                        </td>
+
+                    </tr>
+                </table>    
+            </div>
+                
+             
+               
+            <table border="1px solid black">
+                <div class="col-lg 6">
+                    <tr><td>Description:</td><td>@Model.pro_des</td></tr>
+                    <tr><td>Price: </td><td>@Model.pro_price</td></tr>
+                    <tr><td>Category: </td><td>@Model.cat_name</td></tr>
+                    <tr><td>Author: </td><td>@Model.pro_author</td></tr>
+                    <tr><td>Posted by: </td><td>@Model.u_name<img src="@Url.Content(@Model.u_image)" style="width:40px; height:40px" /> </td> </tr>
+                    <tr><td>Contact: </td><td>@Model.u_contact</td></tr>
+                    
+                    <tr>
+                        <td colspan="2">
+                            @if (Convert.ToInt32(Session["u_id"]) == Convert.ToInt32(Model.pro_fk_user))
+                            {
+                                @Html.ActionLink("Close this Ad", "DeleteAd", new { @class = "btn-btn-info", id = Model.pro_id })
+
+                            }
+
+                        </td>
+                    </tr>
+                </div>
+            </table>
+
+                </div>
+
+
+        </div>
+
+
+                @*<div class="col-lg-2 col-md-2">
+                    <img src="" class="img-responsive" style="height:500px;" />
+                </div>*@
+
+           
+    

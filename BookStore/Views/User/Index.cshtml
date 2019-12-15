@@ -1,0 +1,65 @@
+﻿@using PagedList.Mvc
+@model  PagedList.IPagedList<BookStore.Models.tbl_category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<style>
+
+    .cimg {
+        -webkit-transform 5s;
+        transition: transform 5s;
+    }
+  
+</style>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View  Category</title>
+    <link href="~/Content/paginition.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+   
+        <div class="col-lg-12 col-md-12">
+            <div class="row">
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <div class="col-lg-4 col-md-4">
+
+                            <img class="img img-responsive cimg" src="@Url.Content(item.cat_image)" style="min-height: 200px; vertical-align: middle; margin: 0 auto;" />
+                            <h4 style="color:#808080; font-family:'Arial Rounded MT';text-align:center"> @Html.ActionLink(@item.cat_name, "Ads", new { id = @item.cat_init })</h4>
+
+                        </div>
+
+                    }
+                }
+            </div>
+        </div>
+
+                <div id="container" style="margin-left: 20px">
+                        <p></p>
+                        <p></p>
+                        <div class="pagination" style="margin-left: 400px">
+                            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                            of @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                        </div>
+                </div>
+               
+        
+</body>
+</html>
+
+
+
+
+
